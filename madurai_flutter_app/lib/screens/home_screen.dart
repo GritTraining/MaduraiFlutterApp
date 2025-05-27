@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_blue_plus/flutter_blue_plus.dart';
+import 'package:madurai_flutter_app/screens/expense_screen.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -135,6 +136,22 @@ class HomeScreen extends StatelessWidget {
                       style: TextStyle(fontSize: 16),
                     ),
                   ),
+                  ElevatedButton.icon(
+                    onPressed: () {
+                      _navigateToExpenseTrackerScreen(context);
+                    },
+                    style: ElevatedButton.styleFrom(
+                      padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
+                      minimumSize: const Size(double.infinity, 54),
+                      backgroundColor: const Color.fromARGB(255, 96, 32, 234),
+                      foregroundColor: Colors.white,
+                    ),
+                    icon: const Icon(Icons.bluetooth_connected),
+                    label: const Text(
+                      'Open Expense Tracker',
+                      style: TextStyle(fontSize: 16),
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -149,6 +166,14 @@ class HomeScreen extends StatelessWidget {
       context,
       MaterialPageRoute(
         builder: (context) => const BluetoothDeviceScreen(),
+      ),
+    );
+  }
+   void _navigateToExpenseTrackerScreen(BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const ExpenseScreen(),
       ),
     );
   }

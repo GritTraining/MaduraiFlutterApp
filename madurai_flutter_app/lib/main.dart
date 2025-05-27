@@ -2,6 +2,9 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:madurai_flutter_app/models/expense.dart';
 import 'package:madurai_flutter_app/screens/signup_screen.dart';
 import 'package:madurai_flutter_app/utils/DefaultFirebaseOptions.dart';
 import 'package:provider/provider.dart';
@@ -27,6 +30,9 @@ void main() async {
   } catch (e) {
     debugPrint('Firebase initialization error: $e');
   }
+  Hive.initFlutter();
+  Hive.registerAdapter(ExpenseAdapter());
+
   
   runApp(const MyApp());
 }
