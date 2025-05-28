@@ -4,10 +4,9 @@ import 'package:provider/provider.dart';
 import '../../providers/chat_provider.dart';
 import '../widgets/chat_message_widget.dart';
 import '../../widgets/typing_indicator.dart';
-import '../../models/message.dart';
 
 class ChatScreen extends StatefulWidget {
-  const ChatScreen({Key? key}) : super(key: key);
+  const ChatScreen({super.key});
 
   @override
   State<ChatScreen> createState() => _ChatScreenState();

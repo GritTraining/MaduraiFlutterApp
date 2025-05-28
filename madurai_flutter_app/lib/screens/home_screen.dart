@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_blue_plus/flutter_blue_plus.dart';
+import 'package:madurai_flutter_app/screens/api_tester_screen.dart';
 import 'package:madurai_flutter_app/screens/expense_screen.dart';
 import 'package:permission_handler/permission_handler.dart';
 
+
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +15,7 @@ class HomeScreen extends StatelessWidget {
         title: const Text('Gemini Assistant'),
         elevation: 1,
       ),
-      body: Padding(
+      body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -61,11 +63,15 @@ class HomeScreen extends StatelessWidget {
             ),
             const SizedBox(height: 16),
             
-            Expanded(
+            // Fixed height GridView with shrinkWrap
+            SizedBox(
+              height: 300, // Fixed height for the grid
               child: GridView.count(
                 crossAxisCount: 2,
                 crossAxisSpacing: 16,
                 mainAxisSpacing: 16,
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(), // Disable grid scrolling
                 children: [
                   _buildFeatureCard(
                     context,
@@ -95,66 +101,91 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
             
-            // Buttons section
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 24),
-              child: Column(
-                children: [
-                  // Start chat button
-                  ElevatedButton.icon(
-                    onPressed: () {
-                      // Navigate to chat screen using bottom navigation
-                      DefaultTabController.of(context)?.animateTo(1);
-                    },
-                    style: ElevatedButton.styleFrom(
-                      padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
-                      minimumSize: const Size(double.infinity, 54),
-                    ),
-                    icon: const Icon(Icons.chat_bubble_outline),
-                    label: const Text(
-                      'Start Chatting',
-                      style: TextStyle(fontSize: 16),
-                    ),
+            const SizedBox(height: 24),
+            
+            // Buttons section - Now properly visible
+            Column(
+              children: [
+                // Start chat button
+                ElevatedButton.icon(
+                  onPressed: () {
+                    // Navigate to chat screen using bottom navigation
+                    DefaultTabController.of(context).animateTo(1);
+                  },
+                  style: ElevatedButton.styleFrom(
+                    padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
+                    minimumSize: const Size(double.infinity, 54),
                   ),
-                  
-                  const SizedBox(height: 12),
-                  
-                  // Bluetooth SOS button
-                  ElevatedButton.icon(
-                    onPressed: () {
-                      _navigateToBluetoothScreen(context);
-                    },
-                    style: ElevatedButton.styleFrom(
-                      padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
-                      minimumSize: const Size(double.infinity, 54),
-                      backgroundColor: Colors.red.shade600,
-                      foregroundColor: Colors.white,
-                    ),
-                    icon: const Icon(Icons.bluetooth_connected),
-                    label: const Text(
-                      'Connect Bluetooth Device for SOS',
-                      style: TextStyle(fontSize: 16),
-                    ),
+                  icon: const Icon(Icons.chat_bubble_outline),
+                  label: const Text(
+                    'Start Chatting',
+                    style: TextStyle(fontSize: 16),
                   ),
-                  ElevatedButton.icon(
-                    onPressed: () {
-                      _navigateToExpenseTrackerScreen(context);
-                    },
-                    style: ElevatedButton.styleFrom(
-                      padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
-                      minimumSize: const Size(double.infinity, 54),
-                      backgroundColor: const Color.fromARGB(255, 96, 32, 234),
-                      foregroundColor: Colors.white,
-                    ),
-                    icon: const Icon(Icons.bluetooth_connected),
-                    label: const Text(
-                      'Open Expense Tracker',
-                      style: TextStyle(fontSize: 16),
-                    ),
+                ),
+                
+                const SizedBox(height: 12),
+                
+                // Bluetooth SOS button
+                ElevatedButton.icon(
+                  onPressed: () {
+                    _navigateToBluetoothScreen(context);
+                  },
+                  style: ElevatedButton.styleFrom(
+                    padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
+                    minimumSize: const Size(double.infinity, 54),
+                    backgroundColor: Colors.red.shade600,
+                    foregroundColor: Colors.white,
                   ),
-                ],
-              ),
+                  icon: const Icon(Icons.bluetooth_connected),
+                  label: const Text(
+                    'Connect Bluetooth Device for SOS',
+                    style: TextStyle(fontSize: 16),
+                  ),
+                ),
+                
+                const SizedBox(height: 12),
+                
+                // Expense Tracker button
+                ElevatedButton.icon(
+                  onPressed: () {
+                    _navigateToExpenseTrackerScreen(context);
+                  },
+                  style: ElevatedButton.styleFrom(
+                    padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
+                    minimumSize: const Size(double.infinity, 54),
+                    backgroundColor: const Color.fromARGB(255, 96, 32, 234),
+                    foregroundColor: Colors.white,
+                  ),
+                  icon: const Icon(Icons.account_balance_wallet),
+                  label: const Text(
+                    'Open Expense Tracker',
+                    style: TextStyle(fontSize: 16),
+                  ),
+                ),
+
+                 ElevatedButton.icon(
+                  onPressed: () {
+                    _navigateToAPITesterScreen(context);
+                  },
+                  style: ElevatedButton.styleFrom(
+                    padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
+                    minimumSize: const Size(double.infinity, 54),
+                    backgroundColor: const Color.fromARGB(255, 63, 134, 84),
+                    foregroundColor: Colors.white,
+                  ),
+                  icon: const Icon(Icons.account_balance_wallet),
+                  label: const Text(
+                    'Open API Tester',
+                    style: TextStyle(fontSize: 16),
+                  ),
+                ),
+              ],
+
+              
             ),
+            
+            // Add some bottom padding for better scrolling experience
+            const SizedBox(height: 24),
           ],
         ),
       ),
@@ -169,11 +200,21 @@ class HomeScreen extends StatelessWidget {
       ),
     );
   }
-   void _navigateToExpenseTrackerScreen(BuildContext context) {
+
+  void _navigateToExpenseTrackerScreen(BuildContext context) {
     Navigator.push(
       context,
       MaterialPageRoute(
         builder: (context) => const ExpenseScreen(),
+      ),
+    );
+  }
+
+  void _navigateToAPITesterScreen(BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const ApiTesterScreen(),
       ),
     );
   }
@@ -224,7 +265,7 @@ class HomeScreen extends StatelessWidget {
 
 // Bluetooth Device Screen Class
 class BluetoothDeviceScreen extends StatefulWidget {
-  const BluetoothDeviceScreen({Key? key}) : super(key: key);
+  const BluetoothDeviceScreen({super.key});
 
   @override
   State<BluetoothDeviceScreen> createState() => _BluetoothDeviceScreenState();

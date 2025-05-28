@@ -3,7 +3,7 @@ import 'package:flutter_blue_plus/flutter_blue_plus.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 class BluetoothDeviceScreen extends StatefulWidget {
-  const BluetoothDeviceScreen({Key? key}) : super(key: key);
+  const BluetoothDeviceScreen({super.key});
 
   @override
   State<BluetoothDeviceScreen> createState() => _BluetoothDeviceScreenState();

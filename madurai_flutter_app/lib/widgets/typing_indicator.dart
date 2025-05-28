@@ -4,7 +4,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 
 class TypingIndicator extends StatefulWidget {
-  const TypingIndicator({Key? key}) : super(key: key);
+  const TypingIndicator({super.key});
 
   @override
   State<TypingIndicator> createState() => _TypingIndicatorState();

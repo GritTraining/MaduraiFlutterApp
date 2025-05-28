@@ -2,7 +2,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:madurai_flutter_app/models/expense.dart';
 import 'package:madurai_flutter_app/screens/signup_screen.dart';
@@ -15,10 +14,6 @@ import 'screens/chat_screen.dart';
 import 'screens/home_screen.dart';
 import 'screens/login_screen.dart';
 import 'providers/chat_provider.dart';
-import 'providers/auth_provider.dart';
-import 'package:firebase_core/firebase_core.dart' show FirebaseOptions;
-import 'package:flutter/foundation.dart'
-    show defaultTargetPlatform, kIsWeb, TargetPlatform;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -229,9 +224,9 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
                 value: 'logout',
                 child: Row(
                   children: [
-                    const Icon(Icons.logout),
-                    const SizedBox(width: 8),
-                    const Text('Sign Out'),
+                    Icon(Icons.logout),
+                    SizedBox(width: 8),
+                    Text('Sign Out'),
                   ],
                 ),
               ),

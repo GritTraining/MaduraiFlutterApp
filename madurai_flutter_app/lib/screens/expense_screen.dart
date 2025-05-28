@@ -3,7 +3,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:madurai_flutter_app/models/expense.dart';
 
 class ExpenseScreen extends StatefulWidget {
-  const ExpenseScreen({Key? key}) : super(key: key);
+  const ExpenseScreen({super.key});
 
   @override
   State<ExpenseScreen> createState() => _ExpenseScreenState();

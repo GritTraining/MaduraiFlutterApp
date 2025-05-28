@@ -65,7 +65,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Language Translator From English to Tamil'),
+        title: const Text('Language Translator From English to Tamil'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -84,26 +84,26 @@ class _MyHomePageState extends State<MyHomePage> {
               }).toList(),
               onChanged: onLanguageChanged,
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             TextField(
               controller: inputCtrl,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                   hintText: 'Enter the English Text', labelText: 'Text please'),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             Text(result),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             ElevatedButton(
                 onPressed: () {
                   translateText();
                 },
-                child: Text('Translate'))
+                child: const Text('Translate'))
           ],
         ),
       ),
