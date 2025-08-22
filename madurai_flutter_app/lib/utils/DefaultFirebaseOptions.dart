@@ -41,12 +41,12 @@ class DefaultFirebaseOptions {
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyCDczfsi1Z-0r_XdWTCmryZCgnj3wwI7U0',
+    apiKey: '',
     authDomain: 'maduraiflutterapp.firebaseapp.com',
     projectId: 'maduraiflutterapp',
-    storageBucket: 'maduraiflutterapp.firebasestorage.app',
+    storageBucket: '',
     messagingSenderId: '123456789012',
-    appId: '1:668994510130:android:68134df4b4fe5a1e840b2b',
+    appId: '',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
